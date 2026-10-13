@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #0f172a; /* slate-900 */
+  background-image:
+    radial-gradient(60rem 40rem at 8% -10%, rgba(34, 211, 238, 0.1), transparent 60%),
+    radial-gradient(50rem 40rem at 100% 0%, rgba(99, 102, 241, 0.12), transparent 60%);
+  background-attachment: fixed;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism surface */
+@layer components {
+  .glass {
+    background: rgba(15, 23, 42, 0.6);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(30, 41, 59, 0.95); /* slate-800 */
+    border-radius: 1rem;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+      0 12px 32px -14px rgba(0, 0, 0, 0.65);
+  }
+}
+
+/* Toast animation */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.toast-in { animation: toast-in 0.2s ease-out; }
+
+/* Slim scrollbars */
+* { scrollbar-width: thin; scrollbar-color: #334155 transparent; }
+
+/* Leaflet dark theme overrides */
+.leaflet-container { background: #0f172a; font-family: var(--font-sans); }
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: rgba(15, 23, 42, 0.96);
+  color: #e2e8f0;
+  border: 1px solid #1e293b;
+}
+.leaflet-popup-content-wrapper { border-radius: 0.75rem; }
+.leaflet-popup-content { margin: 12px 14px; }
+.leaflet-container a.leaflet-popup-close-button { color: #94a3b8; }
+.leaflet-tooltip {
+  background: rgba(15, 23, 42, 0.96);
+  color: #e2e8f0;
+  border: 1px solid #1e293b;
+  box-shadow: none;
+}
+.leaflet-tooltip-top:before { border-top-color: #1e293b; }
+.leaflet-bar a { background: #0f172a; color: #e2e8f0; border-bottom-color: #1e293b; }
+.leaflet-bar a:hover { background: #1e293b; }
+.leaflet-control-attribution { background: rgba(15, 23, 42, 0.8) !important; color: #94a3b8 !important; }
+.leaflet-control-attribution a { color: #67e8f9 !important; }

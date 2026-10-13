@@ -1,0 +1,23 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Node.js Dependencies & Builds
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Environment Variables
+.env
+frontend/.env
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
