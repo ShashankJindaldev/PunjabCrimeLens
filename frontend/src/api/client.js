@@ -56,4 +56,31 @@ export async function getForecast(district, years, signal) {
   return data
 }
 
+/** GET /api/export/report/{district}: Downloads the PDF intelligence brief */
+/** GET /api/export/report/{district}: Downloads the PDF intelligence brief */
+export async function exportIntelligenceReport(district, years) {
+  const response = await api.get(`/api/export/report/${encodeURIComponent(district)}`, {
+    params: { years },
+    responseType: 'blob', 
+  });
+  
+  const url = window.URL.createObjectURL(new Blob([response.data]));
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', `${district.toLowerCase().replace(/\s+/g, '_')}_intelligence_report.pdf`);
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.URL.revokeObjectURL(url);
+}
+
+/** GET /api/categories?district=... */
+export async function getCategories(district, signal) {
+  const { data } = await api.get('/api/categories', {
+    params: { district },
+    signal,
+  })
+  return data
+}
+
 export default api

@@ -10,27 +10,18 @@ const POINTS = [
 
 export default function UploadHero({ onUploaded }) {
   return (
-    <GlassCard className="relative overflow-hidden p-6 sm:p-8">
-      <div
-        className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -bottom-24 right-0 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl"
-        aria-hidden
-      />
-
-      <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center">
+    <GlassCard className="p-6 sm:p-8">
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
         <div>
-          <span className="inline-flex items-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300">
+          <span className="inline-flex items-center rounded-full border border-saffron-400/30 bg-saffron-400/10 px-3 py-1 text-xs font-medium text-saffron-300">
             Bring your own data
           </span>
-          <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
             Understand district-level crime trends across{' '}
-            <span className="bg-linear-to-r from-cyan-300 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-saffron-200 to-saffron-500 bg-clip-text text-transparent">
               Punjab
             </span>
-          </h1>
+          </h2>
           <p className="mt-3 max-w-xl text-slate-400">
             Upload a CSV of recorded cases. PunjabCrimeLens aggregates it by district, forecasts future
             counts and ranks districts by year-over-year risk tier.
@@ -38,8 +29,8 @@ export default function UploadHero({ onUploaded }) {
           <ul className="mt-6 space-y-3">
             {POINTS.map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-center gap-3 text-sm text-slate-300">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-slate-800 bg-slate-900/70">
-                  <Icon className="h-4 w-4 text-cyan-300" aria-hidden />
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-white/5 bg-white/[0.02]">
+                  <Icon className="h-4 w-4 text-saffron-400" strokeWidth={1.75} aria-hidden />
                 </span>
                 {text}
               </li>

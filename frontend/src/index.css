@@ -3,6 +3,25 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Saffron → terracotta accent scale (bg-saffron-400, text-saffron-300, etc.) */
+  --color-saffron-50: #fff8eb;
+  --color-saffron-100: #fdebc8;
+  --color-saffron-200: #fbd592;
+  --color-saffron-300: #f8ba5a;
+  --color-saffron-400: #f4a03a;
+  --color-saffron-500: #e8872a;
+  --color-saffron-600: #cc6a1f;
+  --color-saffron-700: #a8501c;
+  --color-saffron-800: #88401d;
+  --color-saffron-900: #6f361b;
+
+  /* Shortcut: remap the cyan classes used in the existing components to saffron,
+     so cards, buttons and badges recolour without touching each file. */
+  --color-cyan-200: #fbd592;
+  --color-cyan-300: #f8ba5a;
+  --color-cyan-400: #f4a03a;
+  --color-cyan-500: #e8872a;
 }
 
 :root {
@@ -17,27 +36,19 @@ body,
 
 body {
   margin: 0;
-  background-color: #0f172a; /* slate-900 */
-  background-image:
-    radial-gradient(60rem 40rem at 8% -10%, rgba(34, 211, 238, 0.1), transparent 60%),
-    radial-gradient(50rem 40rem at 100% 0%, rgba(99, 102, 241, 0.12), transparent 60%);
-  background-attachment: fixed;
+  background-color: #020617; /* slate-950 */
   color: #e2e8f0;
   font-family: var(--font-sans);
+  letter-spacing: -0.005em;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism surface */
+/* Flat, hairline surface (replaces the glassmorphism) */
 @layer components {
   .glass {
-    background: rgba(15, 23, 42, 0.6);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(30, 41, 59, 0.95); /* slate-800 */
-    border-radius: 1rem;
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.02) inset,
-      0 12px 32px -14px rgba(0, 0, 0, 0.65);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.875rem;
   }
 }
 
@@ -72,4 +83,79 @@ body {
 .leaflet-bar a { background: #0f172a; color: #e2e8f0; border-bottom-color: #1e293b; }
 .leaflet-bar a:hover { background: #1e293b; }
 .leaflet-control-attribution { background: rgba(15, 23, 42, 0.8) !important; color: #94a3b8 !important; }
-.leaflet-control-attribution a { color: #67e8f9 !important; }
+.leaflet-control-attribution a { color: #f8ba5a !important; }
+
+/* Custom Pulse Tactical Marker Animations for Leaflet Map */
+@keyframes map-pulse-critical {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8);
+  }
+  70% {
+    transform: scale(1.25);
+    box-shadow: 0 0 0 14px rgba(239, 68, 68, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes map-pulse-high {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(244, 160, 58, 0.8);
+  }
+  70% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 10px rgba(244, 160, 58, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(244, 160, 58, 0);
+  }
+}
+
+.marker-pulse-critical {
+  animation: map-pulse-critical 2s infinite ease-in-out;
+}
+
+.marker-pulse-high {
+  animation: map-pulse-high 2.5s infinite ease-in-out;
+}
+
+.custom-leaflet-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.district-label {
+  background: transparent;
+  border: 0;
+  pointer-events: none;
+}
+.district-label span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(2, 6, 23, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+/* Used for districts drawn as a marker (no polygon): label sits just below the dot */
+.district-label--below span {
+  transform: translate(-50%, 8px);
+}
+
+/* Leaflet 1.9 draws a focus box on clicked polygons */
+.leaflet-container path.leaflet-interactive:focus {
+  outline: none;
+}

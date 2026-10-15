@@ -63,5 +63,26 @@ class DataService:
             "most_common_crime": top_crime
         }
 
+    def get_category_breakdown(self, district: str) -> dict:
+        """Aggregates total cases by crime category for a specific district."""
+        if self.df is None or self.df.empty:
+            return {"error": "No data loaded."}
+
+        d_df = self.df[self.df['district'].str.lower() == district.lower()]
+        if d_df.empty:
+            return {"error": f"No data found for district: {district}"}
+
+        category_data = d_df.groupby('crime_category')['cases'].sum().reset_index()
+        category_data = category_data.sort_values(by='cases', ascending=False)
+
+        breakdown = [
+            {"category": row['crime_category'], "cases": int(row['cases'])} 
+            for _, row in category_data.iterrows()
+        ]
+
+        return {
+            "district": district.title(),
+            "breakdown": breakdown
+        }
 # Singleton instance
 data_service = DataService()
