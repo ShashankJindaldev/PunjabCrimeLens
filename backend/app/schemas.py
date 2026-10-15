@@ -39,3 +39,11 @@ class ForecastResponse(BaseModel):
     historical: List[HistoricalRecord]
     forecast: List[ForecastRecord]
     r2_score: float
+
+class CategoryBreakdown(BaseModel):
+    category: str
+    cases: int
+
+class CategoryResponse(BaseModel):
+    district: str
+    breakdown: List[CategoryBreakdown]

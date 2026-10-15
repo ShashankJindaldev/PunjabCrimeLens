@@ -5,7 +5,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
-from app.schemas import UploadResponse, DistrictSummary, ForecastResponse
+from app.schemas import UploadResponse, DistrictSummary, ForecastResponse, CategoryResponse
 from app.services.data_service import data_service
 from app.services.pdf_service import generate_district_pdf
 from app.ml.forecasting import CrimeForecaster
@@ -74,17 +74,32 @@ def forecast_crime(request: Request, district: str = Query("Ludhiana", descripti
         
     return res
 
-@app.get("/api/categories")
-def get_categories(district: str = Query("Ludhiana", description="District to analyze")):
+@app.get("/api/categories", response_model=CategoryResponse)
+@limiter.limit("30/minute")
+def get_categories(request: Request, district: str = Query(..., description="District to analyze")):
     if data_service.df is None:
         raise HTTPException(status_code=400, detail="Please upload a dataset first.")
         
-    res = data_service.get_category_breakdown(district)
+    df = data_service.df
+    # Filter for the requested district
+    d_df = df[df['district'].str.lower() == district.lower()]
     
-    if "error" in res:
-        raise HTTPException(status_code=404, detail=res["error"])
+    if d_df.empty:
+        raise HTTPException(status_code=404, detail=f"No data found for district: {district}")
         
-    return res
+    # Group by category, sum the cases, and sort descending for the BarChart
+    category_totals = d_df.groupby('crime_category')['cases'].sum().reset_index()
+    category_totals = category_totals.sort_values(by='cases', ascending=False)
+    
+    breakdown = [
+        {"category": str(row['crime_category']), "cases": int(row['cases'])}
+        for _, row in category_totals.iterrows()
+    ]
+    
+    return {
+        "district": district.title(),
+        "breakdown": breakdown
+    }
 
 @app.get("/api/risk-assessment")
 def get_risk_assessment():
