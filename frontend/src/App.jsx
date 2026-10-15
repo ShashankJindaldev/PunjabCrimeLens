@@ -73,6 +73,13 @@ export default function App() {
 
   const { title, subtitle } = PAGE_META[activeTab]
 
+  const handleResetClick = async () => {
+    if (window.confirm("Are you sure you want to clear the active dataset from the server?")) {
+      await resetData();
+      window.location.reload();
+    }
+  };
+
   const forecastViewer = (
     <ForecastViewer
       risk={risk}
