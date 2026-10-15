@@ -1,12 +1,11 @@
 import { useId } from 'react'
 
 export default function PunjabLogo({ className = 'h-9 w-9', title = 'PunjabCrimeLens' }) {
-  // useId keeps gradient ids unique when the logo renders more than once (sidebar + mobile bar).
   const uid = useId().replace(/:/g, '')
 
   return (
     <svg
-      viewBox="0 0 32 32"
+      viewBox="0 0 100 100"
       fill="none"
       role="img"
       aria-label={title}
@@ -14,37 +13,29 @@ export default function PunjabLogo({ className = 'h-9 w-9', title = 'PunjabCrime
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id={`${uid}-fill`} x1="16" y1="3" x2="16" y2="30" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#f8ba5a" stopOpacity="0.3" />
-          <stop offset="1" stopColor="#cc6a1f" stopOpacity="0.06" />
+        <linearGradient id={`${uid}-fill`} x1="50" y1="8" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#f8ba5a" stopOpacity="0.22" />
+          <stop offset="1" stopColor="#cc6a1f" stopOpacity="0.04" />
         </linearGradient>
-        <linearGradient id={`${uid}-stroke`} x1="5" y1="4" x2="27" y2="29" gradientUnits="userSpaceOnUse">
+        <linearGradient id={`${uid}-stroke`} x1="15" y1="8" x2="85" y2="92" gradientUnits="userSpaceOnUse">
           <stop offset="0" stopColor="#fbd592" />
           <stop offset="1" stopColor="#d9772b" />
         </linearGradient>
       </defs>
 
-      {/* State outline */}
+      {/* Punjab outline */}
       <path
-        d="M17.1 3.9 13.5 8.1 9.8 11.5 8.4 16.6 4.7 22.6 8.4 28.5 16.4 29.4 22.3 26 26.6 20.9 26.6 14.9 21.5 10.7 19.3 6.4Z"
+        d="M57.4 8.6C56.4 8.7 53.9 11.9 52.5 12.9C51.1 13.9 50.1 14.3 48.9 14.6C47.7 15 45.8 14.6 45.2 15.1C44.6 15.7 45.6 17 45.3 18C45 18.9 44.6 20.1 43.5 21C42.4 21.8 40 22.7 38.6 23.1C37.2 23.5 36.9 22.4 35.2 23.4C33.5 24.4 29.5 27.6 28.2 29.2C26.8 30.7 26.7 30.8 26.9 32.7C27.2 34.7 29.5 38.2 29.6 40.7C29.7 43.1 27.6 45.6 27.5 47.4C27.4 49.2 30.9 47.6 28.8 51.4C26.6 55.1 16.5 65.9 14.3 69.8C12.2 73.8 16 73.2 16.1 74.9C16.2 76.6 15 78.9 14.9 80C14.8 81.2 12.8 81.5 15.7 81.9C18.5 82.3 28.6 82.7 31.9 82.6C35.1 82.4 34.3 81.3 35.2 81C36.1 80.8 35.7 80.3 37.4 81.1C39.1 81.8 44.2 84.3 45.5 85.6C46.9 87 45.3 88.4 45.5 89.3C45.7 90.2 46.4 90.7 46.8 91.1C47.2 91.5 47 92.4 47.9 91.4C48.7 90.5 50.6 86.3 51.9 85.3C53.2 84.4 54.6 86 55.8 85.8C57.1 85.6 58.1 84.2 59.3 84.2C60.5 84.1 61.8 85.6 62.9 85.8C64 85.9 64.6 85.7 65.8 85.1C67 84.4 69.3 82.8 69.9 81.9C70.5 81 69.3 80.8 69.4 79.7C69.5 78.7 69.8 76.3 70.4 75.5C71.1 74.6 72.5 74.5 73.5 74.5C74.5 74.5 75.7 75.4 76.5 75.5C77.3 75.6 78 75.7 78.5 75.3C79 74.8 79.4 73.8 79.4 73C79.5 72.1 78.4 71.2 78.8 70.1C79.1 69 80.4 67 81.5 66.4C82.6 65.8 84.9 67.6 85.4 66.6C86 65.5 85.1 61.5 84.8 60.2C84.5 58.8 84.3 59.2 83.6 58.7C82.9 58.2 81 57.5 80.6 57.1C80.1 56.7 80.5 56.6 80.9 56.4C81.3 56.2 82.4 56.2 82.8 55.9C83.1 55.7 83.7 56 82.9 54.9C82.1 53.8 78.8 51.2 77.8 49.3C76.8 47.3 77.6 44.5 76.8 43.2C76 41.9 74.1 42.1 73.1 41.3C72.1 40.6 71.7 38.7 71 38.7C70.2 38.7 69.5 40.8 68.8 41.2C68.1 41.6 67.9 42.9 66.7 41.2C65.5 39.5 62.6 33.6 61.4 31.1C60.3 28.5 61.3 27.6 59.9 26C58.5 24.4 54 22.9 52.9 21.5C51.7 20.1 52.1 19.3 53.1 17.7C54 16.2 58 13.7 58.7 12.2C59.5 10.7 58.5 8.5 57.4 8.6Z"
         fill={`url(#${uid}-fill)`}
         stroke={`url(#${uid}-stroke)`}
-        strokeWidth="1.25"
+        strokeWidth="2.6"
         strokeLinejoin="round"
-      />
-
-      {/* Fine data mesh radiating from the focal node */}
-      <path
-        d="M19 17.5 17.1 3.9M19 17.5 4.7 22.6M19 17.5 16.4 29.4M19 17.5 26.6 14.9"
-        stroke="#f8ba5a"
-        strokeOpacity="0.28"
-        strokeWidth="0.6"
         strokeLinecap="round"
       />
 
-      {/* Focal node ("lens") */}
-      <circle cx="19" cy="17.5" r="2.6" stroke="#f8ba5a" strokeOpacity="0.5" strokeWidth="0.7" />
-      <circle cx="19" cy="17.5" r="1.2" fill="#fbd592" />
+      {/* Lens: Ludhiana */}
+      <circle cx="60.5" cy="53.4" r="4.6" stroke="#fbd592" strokeWidth="1.8" />
+      <circle cx="60.5" cy="53.4" r="1.9" fill="#fbd592" />
     </svg>
   )
 }
