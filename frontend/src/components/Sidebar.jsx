@@ -5,7 +5,8 @@ import {
   TrendingUp,
   Upload,
   X,
-  PieChart
+  PieChart,
+  Trash2
 } from 'lucide-react'
 import PunjabLogo from './PunjabLogo'
 
@@ -22,6 +23,7 @@ export default function Sidebar({
   onTabChange,
   dataset,
   onUploadClick,
+  onResetClick,
   open = false,
   onClose,
 }) {
@@ -53,7 +55,7 @@ export default function Sidebar({
           <div className="flex items-center gap-3">
             <PunjabLogo className="h-9 w-9 shrink-0" />
             <div className="leading-none">
-              <p className="text-[15px] font-semibold tracking-tight text-white">
+              <p className="font-semibold tracking-tight text-white">
                 Punjab<span className="text-saffron-400">CrimeLens</span>
               </p>
               <p className="mt-1.5 text-[11px] tracking-tight text-slate-500">Crime analytics</p>
@@ -123,15 +125,28 @@ export default function Sidebar({
               </p>
             </div>
           </div>
-
-          <button
-            type="button"
-            onClick={onUploadClick}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-saffron-400 px-4 py-2.5 text-sm font-semibold tracking-tight text-slate-950 transition-colors hover:bg-saffron-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-saffron-300"
-          >
-            <Upload className="h-4 w-4" strokeWidth={2} aria-hidden />
-            Upload CSV
-          </button>
+          
+          <div className="flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onUploadClick}
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-saffron-400 px-4 py-2.5 text-sm font-semibold tracking-tight text-slate-950 transition-colors hover:bg-saffron-500"
+            >
+              <Upload className="h-4 w-4" strokeWidth={2} aria-hidden />
+              Upload CSV
+            </button>
+            
+            {dataset && (
+              <button
+                type="button"
+                onClick={onResetClick}
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-2 text-sm font-medium tracking-tight text-red-400 transition-colors hover:bg-red-500/20"
+              >
+                <Trash2 className="h-4 w-4" strokeWidth={2} aria-hidden />
+                Clear Data
+              </button>
+            )}
+          </div>
         </div>
       </aside>
     </>

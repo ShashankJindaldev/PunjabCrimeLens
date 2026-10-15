@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Menu } from 'lucide-react'
 import Sidebar from './components/Sidebar'
+import { resetData } from './api/client';
 import CategoryViewer from './components/CategoryViewer'
 import PunjabLogo from './components/PunjabLogo'
 import ResponsibleUseBanner from './components/ResponsibleUseBanner'
@@ -88,9 +89,10 @@ export default function App() {
         onTabChange={setActiveTab}
         dataset={dataset}
         onUploadClick={() => setModalOpen(true)}
+        onResetClick={handleResetClick}
         open={sidebarOpen}
         onClose={closeSidebar}
-      />
+/>
 
       {/* Content column: offset by the fixed sidebar width on desktop */}
       <div className="flex h-full flex-col lg:pl-64">

@@ -53,6 +53,13 @@ async def upload_dataset(request: Request, file: UploadFile = File(...)):
         message=result["message"]
     )
 
+@app.post("/api/reset")
+@limiter.limit("10/minute")
+def reset_dataset(request: Request):
+    # Wipes the dataframe from the server's active memory
+    data_service.df = None
+    return {"status": "success", "message": "Dataset cleared from memory."}
+
 @app.get("/api/summary")
 def get_dashboard_summary():
     result = data_service.get_summary_stats()

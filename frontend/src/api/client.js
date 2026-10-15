@@ -83,4 +83,10 @@ export async function getCategories(district, signal) {
   return data
 }
 
+/** POST /api/reset: Clears the backend memory */
+export async function resetData() {
+  const { data } = await api.post('/api/reset');
+  return data;
+}
+
 export default api
