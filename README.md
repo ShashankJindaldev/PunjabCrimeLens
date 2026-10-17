@@ -8,16 +8,21 @@
 
 District-level crime analytics and statistical forecasting for the state of Punjab, India.
 
+**Live demo:** [punjab-crime-lens.vercel.app](https://punjab-crime-lens.vercel.app) (hosted on free tiers; the backend may take a moment to wake after inactivity)
+
+![District risk map](docs/screenshots/map.png)
+
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Features](#features)
-3. [System Architecture](#system-architecture)
-4. [Machine Learning Methodology](#machine-learning-methodology)
-5. [CSV Schema Requirements](#csv-schema-requirements)
-6. [Local Installation](#local-installation)
-7. [Deployment](#deployment)
-8. [Limitations and Responsible Use](#limitations-and-responsible-use)
+2. [Screenshots](#screenshots)
+3. [Features](#features)
+4. [System Architecture](#system-architecture)
+5. [Machine Learning Methodology](#machine-learning-methodology)
+6. [CSV Schema Requirements](#csv-schema-requirements)
+7. [Local Installation](#local-installation)
+8. [Deployment](#deployment)
+9. [Limitations and Responsible Use](#limitations-and-responsible-use)
 
 ---
 
@@ -31,6 +36,29 @@ The system is split into two independently deployable services:
 - A **React (Vite)** single-page application that renders the results as KPI cards, a district choropleth, forecast charts with confidence bands, and a sortable risk matrix.
 
 **Intended use:** aggregate, district-level decision support (trend monitoring, resource planning, prevention programming). The system does not model individuals, neighbourhoods, or demographic groups. See [Limitations and Responsible Use](#limitations-and-responsible-use).
+
+---
+
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/overview.png" alt="Overview dashboard" /></td>
+    <td><img src="docs/screenshots/forecasts.png" alt="District forecast with confidence band" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>Overview</b>: KPIs, forecast and highest-risk districts</sub></td>
+    <td align="center"><sub><b>Forecasts</b>: trend projection with widening confidence band</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/risk-matrix.png" alt="Risk matrix" /></td>
+    <td><img src="docs/screenshots/categories.png" alt="Crime category breakdown" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>Risk Matrix</b>: sortable, filterable district ranking</sub></td>
+    <td align="center"><sub><b>Categories</b>: crime category breakdown</sub></td>
+  </tr>
+</table>
 
 ---
 
@@ -292,7 +320,7 @@ The hosted deployments run on free tiers and may be spun down when idle, so the 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<owner>/PunjabCrimeLens.git
+git clone https://github.com/ShashankJindaldev/PunjabCrimeLens.git
 cd PunjabCrimeLens
 ```
 
